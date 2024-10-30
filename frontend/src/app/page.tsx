@@ -1,11 +1,9 @@
 "use client";
 import { useSession } from "next-auth/react";
-import WelcomePage from "@/components/WelcomePage/page";
 import FindPeople from "@/components/FindPeople/page";
 import ConnectionRequests from "@/components/ConnectionRequests/page";
 import GetConnections from "@/components/GetConnections/page";
 import HeroSection from "@/components/HeroSection/page";
-import Link from "next/link";
 
 export default function Home() {
   const { data: session } = useSession();

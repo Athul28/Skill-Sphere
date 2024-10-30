@@ -11,8 +11,6 @@ export default function GetConnections() {
   const { data: session } = useSession();
   const email = session?.user?.email;
 
-  //add a loading animation for 3s
-  const [loading, setLoading] = useState(true);
 
   const getUsers = async () => {
     const res = await fetch(`/api/getConnections?email=${email}`);

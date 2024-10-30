@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma/prisma";
-import { emit } from "process";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -17,7 +16,7 @@ export async function GET(request: Request) {
   if (type === "skill") {
     let skills = user?.skills;
     skills = skills?.filter((skill, i) => i !== parseInt(index as string));
-    const data = await prisma.user.update({
+    await prisma.user.update({
       where: {
         email: email,
       },
@@ -29,7 +28,7 @@ export async function GET(request: Request) {
   } else if (type === "learning") {
     let learningGoals = user?.learningGoals;
     learningGoals = learningGoals?.filter((skill, i) => i !== parseInt(index as string));
-    const data = await prisma.user.update({
+    await prisma.user.update({
       where: {
         email: email,
       },

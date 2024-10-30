@@ -1,6 +1,4 @@
 import { prisma } from "@/lib/prisma/prisma";
-import { connect } from "http2";
-import Email from "next-auth/providers/email";
 
 export async function POST(request: Request) {
   const url = new URL(request.url);
@@ -24,7 +22,7 @@ export async function POST(request: Request) {
     },
   });
   const reqId = data?.id;
-  const accept = await prisma.connectionRequest.update({
+  await prisma.connectionRequest.update({
     where: {
       id: reqId,
     },
@@ -73,6 +71,7 @@ export async function POST(request: Request) {
         },
       },
     });
+    console.log(update1,update2)
   } else {
     return Response.json("Invalid sender or receiver ID");
   }

@@ -1,16 +1,15 @@
-import ConnectionRequests from "@/components/ConnectionRequests/page"
 import { prisma } from "@/lib/prisma/prisma"
 
 export async function POST(request:Request){
     const url=new URL(request.url)
     const sender=url.searchParams.get("sender")
     const receiver=url.searchParams.get("receiver")
-    let senderUser = await prisma.user.findFirst({
+    const senderUser = await prisma.user.findFirst({
         where: {
             email: sender
         }
     })
-    let receiverUser = await prisma.user.findFirst({
+    const receiverUser = await prisma.user.findFirst({
         where: {
             email: receiver
         }
@@ -20,7 +19,7 @@ export async function POST(request:Request){
     }
     const senderId = senderUser.id
     const receiverId = receiverUser.id
-    const res=await prisma.connectionRequest.create({
+    await prisma.connectionRequest.create({
         data:{
             fromUserId:senderId,
             toUserId:receiverId

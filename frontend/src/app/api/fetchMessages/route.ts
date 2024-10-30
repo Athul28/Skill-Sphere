@@ -11,7 +11,7 @@ export async function POST(request:Request){
     if (message === null) {
         return new Response("Message text is required", { status: 400 });
     }
-    const data = await prisma.chats.create({
+    await prisma.chats.create({
         data: {
             text: message
         }

@@ -1,3 +1,5 @@
+import SessionProvider from '@auth/prisma-adapter'
+
 export default function App({
     Component,
     pageProps: { session, ...pageProps },

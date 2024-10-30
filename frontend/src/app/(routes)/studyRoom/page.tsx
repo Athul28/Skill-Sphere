@@ -14,9 +14,9 @@ export default function StudyRoom() {
   socket.emit("join");
 
   const sendMessage = async () => {
-    let data = session?.user?.name + " : " + message;
+    const data = session?.user?.name + " : " + message;
     socket.emit("send_message", data);
-    const addData = await fetch(`/api/fetchMessages?text=${data}`, {
+    await fetch(`/api/fetchMessages?text=${data}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

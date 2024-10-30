@@ -20,7 +20,7 @@ export default function ConnectionRequests() {
   };
 
   const acceptConnection = async (senderId: string) => {
-    const res = await fetch(
+    await fetch(
       `/api/acceptRequest?email=${email}&senderId=${senderId}`,
       {
         method: "POST",
