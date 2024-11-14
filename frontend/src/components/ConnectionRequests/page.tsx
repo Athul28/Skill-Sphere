@@ -1,6 +1,9 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ConnectionRequests() {
   const { data: session } = useSession();
@@ -29,6 +32,7 @@ export default function ConnectionRequests() {
         },
       }
     );
+    toast.success("Request accepted!");
     getRequests();
   };
 
