@@ -2,6 +2,9 @@
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import Image from "next/image";
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function FindPeople() {
   const { data: session } = useSession();
@@ -33,18 +36,25 @@ export default function FindPeople() {
         },
       }
     );
+    if (response.ok) {
+      toast.success("Connection request sent successfully!");
+    } else {
+      toast.error("Failed to send connection request.");
+    }
     console.log(response);
   };
 
   return (
     <div>
-      <div className="md:flex items-center text-2xl justify-center md:space-x-4">
+      <div className="md:flex items-center text-2xl justify-center md:space-x-4 p-2">
         <p>
           Find people who align with your interest click on serch now to begin
         </p>
+        <div className="w-fit m-auto max-md:my-2">
         <button onClick={findMatch} className="p-4 bg-green-700 hover:bg-green-800 hover:scale-105 transition rounded-sm">
           Search Now
         </button>
+        </div>
       </div>
         <p className="text-md text-center">(Please update your profile with your skills before searching)</p>
 
@@ -73,6 +83,7 @@ export default function FindPeople() {
             );
           })}
       </div>
+      <ToastContainer />
     </div>
   );
 }
